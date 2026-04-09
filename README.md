@@ -1,5 +1,7 @@
 # co2-adsorption-analysis
 
+[![tests](https://github.com/defnalk/co2-adsorption-analysis/actions/workflows/tests.yml/badge.svg)](https://github.com/defnalk/co2-adsorption-analysis/actions/workflows/tests.yml)
+
 Python analysis of CO₂ adsorption on solid sorbents, relevant to post-combustion carbon capture. Covers isotherm fitting, breakthrough curve modelling, and cyclic regeneration analysis.
 
 ## What it does
