@@ -91,8 +91,14 @@ q_exp = np.array([0.42, 0.68, 1.05, 1.42, 1.65, 1.83, 2.05, 2.30, 2.48, 2.65])
 q_err = np.array([0.03, 0.04, 0.04, 0.05, 0.04, 0.05, 0.06, 0.05, 0.06, 0.07])
 
 # Fit models
-popt_L, pcov_L = curve_fit(langmuir,    P_exp, q_exp, p0=[3.0, 5.0], sigma=q_err)
-popt_F, pcov_F = curve_fit(freundlich,  P_exp, q_exp, p0=[3.0, 2.0], sigma=q_err)
+popt_L, pcov_L = curve_fit(
+    langmuir, P_exp, q_exp, p0=[3.0, 5.0], sigma=q_err,
+    bounds=([0.0, 0.0], [np.inf, np.inf]),
+)
+popt_F, pcov_F = curve_fit(
+    freundlich, P_exp, q_exp, p0=[3.0, 2.0], sigma=q_err,
+    bounds=([0.0, 1e-6], [np.inf, np.inf]),
+)
 
 P_fit = np.linspace(0, 1.0, 300)
 q_lang = langmuir(P_fit, *popt_L)
