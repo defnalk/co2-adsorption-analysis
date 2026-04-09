@@ -211,11 +211,12 @@ def working_capacity(T_ads, T_regen, q_max, K_L):
     return q_ads - q_regen
 
 T_regen_range = np.linspace(60, 200, 60)
-wc_values = [working_capacity(40, T, *popt_L) for T in T_regen_range]
+wc_values = working_capacity(40, T_regen_range, *popt_L)
 
-optimal_T = T_regen_range[np.argmax(wc_values)]
+optimal_idx = int(np.argmax(wc_values))
+optimal_T = T_regen_range[optimal_idx]
 print(f"\nREGENERATION ANALYSIS")
-print(f"  Max working capacity:  {max(wc_values):.3f} mol/kg at T_regen = {optimal_T:.0f} °C")
+print(f"  Max working capacity:  {wc_values[optimal_idx]:.3f} mol/kg at T_regen = {optimal_T:.0f} °C")
 
 
 # ════════════════════════════════════════════════════════════════════════════
