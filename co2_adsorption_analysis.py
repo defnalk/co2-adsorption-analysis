@@ -270,7 +270,8 @@ q_pred_L = langmuir(P_exp, *popt_L)
 q_pred_F = freundlich(P_exp, *popt_F)
 ax4.scatter(q_exp, q_pred_L, color=COLOUR_LANG, label="Langmuir",    s=60, zorder=5)
 ax4.scatter(q_exp, q_pred_F, color=COLOUR_CO2,  label="Freundlich",  s=60, marker="^", zorder=5)
-lims = [min(q_exp) - 0.1, max(q_exp) + 0.1]
+_all_q = np.concatenate([q_exp, q_pred_L, q_pred_F])
+lims = [float(_all_q.min()) - 0.1, float(_all_q.max()) + 0.1]
 ax4.plot(lims, lims, "k--", lw=1.2, label="Perfect fit")
 ax4.set_xlabel("Experimental q (mol kg⁻¹)")
 ax4.set_ylabel("Predicted q (mol kg⁻¹)")
