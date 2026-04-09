@@ -147,9 +147,30 @@ t_span = (0, 2500)
 t_eval = np.linspace(0, 2500, 500)
 
 # Use a simple analytical approximation for cleaner output
-def breakthrough_curve(t, c_in, tau):
-    """Sigmoidal breakthrough: c/c_in = 1 - exp(-t/tau) ** k"""
-    return c_in * (1 - np.exp(-(t / tau) ** 2.5))
+def breakthrough_curve(t, c_in, tau, k=2.5):
+    """
+    Weibull-style sigmoidal breakthrough curve.
+
+        c(t) = c_in * (1 - exp(-(t/tau)^k))
+
+    Parameters
+    ----------
+    t : array-like
+        Time (s).
+    c_in : float
+        Inlet (feed) concentration. Returned in the same units.
+    tau : float
+        Characteristic time of the curve (s).
+    k : float, optional
+        Sharpness exponent. k=1 reduces to a simple exponential rise;
+        k>1 gives an S-shaped breakthrough typical of fixed-bed adsorbers.
+
+    Returns
+    -------
+    np.ndarray
+        Outlet concentration c(t), in the same units as c_in.
+    """
+    return c_in * (1 - np.exp(-(t / tau) ** k))
 
 t_bt = t_eval
 c_bt = breakthrough_curve(t_bt, params["c_in"], tau=900)
