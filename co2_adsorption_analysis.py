@@ -154,8 +154,15 @@ def breakthrough_curve(t, c_in, tau):
 t_bt = t_eval
 c_bt = breakthrough_curve(t_bt, params["c_in"], tau=900)
 
-t_break = t_bt[np.where(c_bt >= 0.05 * params["c_in"])[0][0]]
-t_sat   = t_bt[np.where(c_bt >= 0.95 * params["c_in"])[0][0]]
+def _first_crossing(t, c, threshold):
+    """Return the first time at which c >= threshold, or NaN if never."""
+    idx = np.searchsorted(c, threshold, side="left")
+    if idx >= len(t):
+        return float("nan")
+    return float(t[idx])
+
+t_break = _first_crossing(t_bt, c_bt, 0.05 * params["c_in"])
+t_sat   = _first_crossing(t_bt, c_bt, 0.95 * params["c_in"])
 
 print(f"\nBREAKTHROUGH ANALYSIS")
 print(f"  Breakthrough time (5% of c_in):    {t_break:.0f} s  ({t_break/60:.1f} min)")
