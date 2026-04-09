@@ -57,6 +57,7 @@ def langmuir(P, q_max, K_L):
     np.ndarray
         Adsorbed amount q (mol kg⁻¹).
     """
+    P = np.asarray(P, dtype=float)
     return q_max * K_L * P / (1 + K_L * P)
 
 
@@ -80,7 +81,12 @@ def freundlich(P, K_F, n):
     np.ndarray
         Adsorbed amount q (mol kg⁻¹).
     """
-    return K_F * np.array(P) ** (1 / n)
+    P = np.asarray(P, dtype=float)
+    # Clip to a tiny positive floor: P**(1/n) is undefined for P<0
+    # and callers (e.g. P_fit = linspace(0, 1)) routinely include 0,
+    # which for n<1 would yield 0**negative = inf and corrupt plots.
+    P = np.clip(P, 1e-12, None)
+    return K_F * P ** (1.0 / n)
 
 
 # Simulated experimental isotherm data at 40 °C (representative of
