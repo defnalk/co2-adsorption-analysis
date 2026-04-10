@@ -2,7 +2,7 @@
 
 [![tests](https://github.com/defnalk/co2-adsorption-analysis/actions/workflows/tests.yml/badge.svg)](https://github.com/defnalk/co2-adsorption-analysis/actions/workflows/tests.yml)
 
-Python analysis of CO₂ adsorption on solid sorbents, relevant to post-combustion carbon capture. Covers isotherm fitting, breakthrough curve modelling, and cyclic regeneration analysis.
+Python analysis of CO₂ adsorption on solid sorbents, relevant to post combustion carbon capture. Covers isotherm fitting, breakthrough curve modelling, and cyclic regeneration analysis.
 
 ## What it does
 
@@ -10,17 +10,17 @@ Python analysis of CO₂ adsorption on solid sorbents, relevant to post-combusti
 |---|---|
 | Adsorption isotherm | Langmuir & Freundlich model fitting via `scipy.optimize.curve_fit` |
 | Breakthrough curve | Sigmoidal LDF (linear driving force) model |
-| Cyclic working capacity | Temperature-swing adsorption (TSA) with van't Hoff correction |
-| Visualisation | 4-panel figure (isotherm, breakthrough, working capacity, parity plot) |
+| Cyclic working capacity | Temperature swing adsorption (TSA) with van't Hoff correction |
+| Visualisation | 4 panel figure (isotherm, breakthrough, working capacity, parity plot) |
 
 ## Background
 
-Solid sorbents (zeolites, MOFs, amine-grafted silica) are promising alternatives to aqueous amine scrubbing for point-source CO₂ capture. This script reproduces the core analyses used to characterise sorbent performance from experimental isotherm data.
+Solid sorbents (zeolites, MOFs, amine grafted silica) are promising alternatives to aqueous amine scrubbing for point source CO₂ capture. This script reproduces the core analyses used to characterise sorbent performance from experimental isotherm data.
 
 Key metrics calculated:
-- **q_max** — maximum adsorption capacity (mol kg⁻¹)
-- **Breakthrough time** — when exit concentration reaches 5% of inlet
-- **Working capacity Δq** — usable loading per TSA cycle
+- **q_max**, maximum adsorption capacity (mol kg⁻¹)
+- **Breakthrough time**, when exit concentration reaches 5% of inlet
+- **Working capacity Δq**, usable loading per TSA cycle
 
 ## Installation
 
@@ -36,7 +36,7 @@ pip install -r requirements.txt
 python co2_adsorption_analysis.py
 ```
 
-Produces a 4-panel figure saved as `co2_adsorption_results.png`:
+Produces a 4 panel figure saved as `co2_adsorption_results.png`:
 
 ![Results](co2_adsorption_results.png)
 
@@ -64,5 +64,5 @@ REGENERATION ANALYSIS
 
 ## Author
 
-Defne Ertugrul — MEng Chemical Engineering, Imperial College London  
+Defne Ertugrul, MEng Chemical Engineering, Imperial College London  
 Related to undergraduate UROP work on carbon capture process design.
